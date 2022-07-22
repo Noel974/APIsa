@@ -4,13 +4,15 @@ const app = express();
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/User');
+const userSauces = require('./routes/sauces');
+
 
 const path = require('path');
 
 require('dotenv').config();
 
-// connexion a la base de données mongoDB
-mongoose.connect(`mongodb+srv://noel:Emmanuel@cluster0.pxrqail.mongodb.net/?retryWrites=true&w=majority`,
+// connexion a la base de données mongoDBy
+mongoose.connect(process.env.DB_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -34,6 +36,7 @@ app.use((req, res, next) => {
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
 // configuration des routes
+app.use('/api/sauces', userSauces);
 app.use('/api/auth', userRoutes);
 
 module.exports = app; 
