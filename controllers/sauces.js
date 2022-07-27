@@ -1,6 +1,5 @@
 const Sauce = require('../models/Sauce');
 const fs = require('fs');
-const validator = require('../middlewares/sauce-validator')
 
 // Récupération de toutes les sauces
 exports.getAllSauces = (req, res, next) => {
